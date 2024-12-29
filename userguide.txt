@@ -1,0 +1,81 @@
+# User Guide: YouTube Video Automation Tool
+This user guide aims to help you understand and use the automated tool for creating and uploading YouTube videos. The program combines script generation, text-to-speech, audio-video merging, and video uploading in a seamless workflow.
+## **Overview**
+This program simplifies the process of creating YouTube videos by automating the following tasks:
+1. Generates a script using an AI model (pre-configured to provide scripts for the "Guess The Country" game format).
+2. Converts the generated script into audio using text-to-speech.
+3. Merges the audio with a pre-existing video to create the final video.
+4. Uploads the final video to a YouTube channel.
+
+## **Setup Instructions**
+### 1. **Prerequisites**
+Before running the program, ensure you have the following:
+- Python installed on your system.
+- Access to a YouTube account and its credentials.
+- A video file that will act as the visual base (`input.mp4`).
+- Necessary dependencies installed (see below).
+
+### 2. **Install Dependencies**
+Run the following command to install the required Python libraries:
+``` bash
+pip install langchain-ollama gtts moviepy google-auth google-auth-oauthlib google-api-python-client
+```
+### 3. **Obtain YouTube API Credentials**
+1. Visit the [Google Cloud Console]().
+2. Create a project and enable the **YouTube Data API v3**.
+3. Download the `client_secret.json` file and place it in the project folder.
+4. Ensure the program can access this file during execution.
+
+## **How to Use**
+### 1. **Prepare Resources**
+- Place the base video (`input.mp4`) in the same directory as the program.
+- Ensure `client_secret.json` (YouTube API credentials) is in the directory.
+
+### 2. **Run the Program**
+Execute the script with the following command:
+``` bash
+python main.py
+```
+### 3. **Authorize YouTube Access**
+Upon running the program:
+- A browser window will open asking for permission to access your YouTube account.
+- Grant the required permissions to continue.
+
+### 4. **Video Creation and Upload**
+The program generates a video based on the script (for the "Guess The Country" game) and uploads it to your YouTube account. Once uploaded, the program displays a **Video ID**, confirming the upload.
+## **Features and Customization**
+### 1. **Customizing Video Topics**
+Currently, the program is set up for the "Guess The Country" game. You can modify the **prompt** provided to the AI model to introduce other topics. Changes can be made in the script where:
+``` python
+model.invoke(input="Your custom prompt here")
+```
+### 2. **Modify Video Metadata**
+You can customize the following metadata for the YouTube video directly in the script:
+- **Video Title:** Modify the `title` variable.
+- **Video Description:** Adjust the `description` variable.
+- **Tags:** Update the `tags` list with keywords for the video.
+- **Category:** Change the `category_id` to match your preferred YouTube category. (`22` is for "People & Blogs").
+
+### 3. **Input Video**
+Replace the `input.mp4` file with another video of your choice to use as the base visual.
+## **Troubleshooting**
+1. **Problem: Video upload fails**
+    - Verify the `client_secret.json` file exists and is valid.
+    - Ensure you have provided YouTube API authorization when prompted.
+
+2. **Problem: Missing dependencies**
+    - Ensure all required libraries are installed. Run the install command again if needed:
+``` bash
+     pip install -r requirements.txt
+```
+1. **Problem: Script errors**
+    - Ensure your Python version is compatible (preferably 3.8+).
+    - Check the file paths for input and credentials.
+
+## **Next Steps**
+Using this tool, you can quickly create YouTube videos with minimal manual intervention. Customize the script to add more variety to your content or automate posting schedules.
+For any modifications or scaling, look into:
+- Scheduling the script with tools like CRON (for Linux) or Task Scheduler (for Windows).
+- Expanding the topics by updating the AI model input prompt.
+
+With this guide, you should now be ready to create and share amazing videos efficiently.
